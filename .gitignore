@@ -1,0 +1,9 @@
+﻿.vs/*
+GarageDoorMonitor/appsettings.json
+GarageDoorMonitor/appsettings.Development.json
+GarageDoorMonitor/obj/*
+GarageDoorMonitor/bin/*
+GarageDoorMonitorArduino/.idea/*
+GarageDoorMonitor/Properties/PublishProfiles/FTPProfile.pubxml
+GarageDoorMonitor/Properties/PublishProfiles/FTPProfile.pubxml.user
+GarageDoorMonitorArduino/include/app_settings.h
