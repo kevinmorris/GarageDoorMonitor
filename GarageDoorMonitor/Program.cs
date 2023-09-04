@@ -1,12 +1,12 @@
 using System.Security.Claims;
 using GarageDoorMonitor;
 using idunno.Authentication.Basic;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Azure.Cosmos;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -14,26 +14,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAuthentication(BasicAuthenticationDefaults.AuthenticationScheme)
     .AddBasic(options =>
     {
+        var authUtil = new AuthUtil(
+            builder.Configuration["BasicAuth:UserName"],
+            builder.Configuration["BasicAuth:Password"]);
+
         options.Realm = "GarageDoorMonitor";
         options.Events = new BasicAuthenticationEvents
         {
-            OnValidateCredentials = context =>
-            {
-                if (context.Username == builder.Configuration["BasicAuth:Username"] &&
-                    context.Password == builder.Configuration["BasicAuth:Password"])
-                {
-                    context.Principal = new ClaimsPrincipal(
-                        new ClaimsIdentity(new[]
-                        {
-                            new Claim(
-                                ClaimTypes.Name, 
-                                context.Username,
-                                context.Options.ClaimsIssuer)
-                        }, context.Scheme.Name));
-                    context.Success();
-                }
-                return Task.CompletedTask;
-            }
+            OnValidateCredentials = authUtil.BasicAuthValidateCredentials
         };
     });
 builder.Services.AddAuthorization();
