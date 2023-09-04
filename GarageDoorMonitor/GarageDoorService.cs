@@ -30,11 +30,15 @@ namespace GarageDoorMonitor
 
         public async Task SetAsync(string id, int isOpen)
         {
-            await _container.UpsertItemAsync(new GarageDoorStatus()
+            var existingStatus = await GetAsync(id);
+            if (existingStatus != null)
             {
-                Id = id,
-                IsOpen = isOpen
-            });
+                await _container.UpsertItemAsync(new GarageDoorStatus()
+                {
+                    Id = id,
+                    IsOpen = isOpen
+                });
+            }
         }
     }
 }
