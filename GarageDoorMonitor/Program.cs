@@ -2,7 +2,6 @@ using System.Security.Claims;
 using GarageDoorMonitor;
 using idunno.Authentication.Basic;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Azure.Cosmos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,12 +27,11 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddSingleton<IGarageDoorService>(options =>
 {
-    var cosmosClient = new CosmosClient(builder.Configuration["AzureCosmosDB:EndpointUri"]);
+    var endpointUri = builder.Configuration["AzureCosmosDB:EndpointUri"];
     var dbName = builder.Configuration["AzureCosmosDB:DatabaseName"];
     var collectionName = builder.Configuration["AzureCosmosDB:CollectionName"];
 
-    return new GarageDoorService(
-        cosmosClient.GetContainer(dbName, collectionName));
+    return new GarageDoorService(endpointUri, dbName, collectionName);
 });
 
 var app = builder.Build();

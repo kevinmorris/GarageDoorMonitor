@@ -1,4 +1,5 @@
-﻿using Microsoft.Azure.Cosmos;
+﻿using System.Configuration;
+using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Linq;
 
 namespace GarageDoorMonitor
@@ -7,9 +8,10 @@ namespace GarageDoorMonitor
     {
         private readonly Container _container;
 
-        public GarageDoorService(Container container)
+        public GarageDoorService(string endpointUri, string dbName, string collectionName)
         {
-            _container = container;
+            var cosmosClient = new CosmosClient(endpointUri);
+            _container = cosmosClient.GetContainer(dbName, collectionName);
         }
 
         public async Task<GarageDoorStatus?> GetAsync(string id)

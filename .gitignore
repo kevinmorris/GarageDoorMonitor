@@ -7,3 +7,7 @@ GarageDoorMonitorArduino/.idea/*
 GarageDoorMonitor/Properties/PublishProfiles/FTPProfile.pubxml
 GarageDoorMonitor/Properties/PublishProfiles/FTPProfile.pubxml.user
 GarageDoorMonitorArduino/include/app_settings.h
+GarageDoorApp/obj/*
+GarageDoorServices/obj/*
+GarageDoorServices/App.config
+GarageDoorServices/bin/*

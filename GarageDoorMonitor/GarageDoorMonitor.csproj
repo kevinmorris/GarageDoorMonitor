@@ -8,9 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="idunno.Authentication.Basic" Version="2.3.1" />
-    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.35.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GarageDoorServices\GarageDoorServices.csproj" />
   </ItemGroup>
 
 </Project>
