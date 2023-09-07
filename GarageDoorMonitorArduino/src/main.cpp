@@ -8,10 +8,10 @@ int status = WL_IDLE_STATUS;
 
 WiFiClient client;
 
-float voltage = 0.0f;
+float voltage = -1.0f;
 
 float getVoltage(pin_size_t pin);
-void postIsOpen(bool isOpen);
+bool postIsOpen(bool isOpen);
 
 void setup() {
 
@@ -40,17 +40,23 @@ void setup() {
 void loop() {
 
     float currentVoltage = getVoltage(A0);
-    if(currentVoltage > VOLTAGE_THRESHOLD && voltage <= VOLTAGE_THRESHOLD) {
-        Serial.println("Door is closed");
+    Serial.print("Voltage: ");
+    Serial.println(currentVoltage);
+
+    if(currentVoltage > VOLTAGE_THRESHOLD &&
+       voltage <= VOLTAGE_THRESHOLD &&
+       postIsOpen(false)) {
+
         voltage = currentVoltage;
-        postIsOpen(false);
-    } else if(currentVoltage <= VOLTAGE_THRESHOLD && voltage > VOLTAGE_THRESHOLD){
-        Serial.println("Door is open");
+
+    } else if(currentVoltage <= VOLTAGE_THRESHOLD &&
+              voltage > VOLTAGE_THRESHOLD &&
+              postIsOpen(true)) {
+
         voltage = currentVoltage;
-        postIsOpen(true);
     }
 
-    delay(10000);
+    delay(30000);
 }
 
 float getVoltage(pin_size_t pin) {
@@ -59,12 +65,13 @@ float getVoltage(pin_size_t pin) {
     return sensorValue * (5.0f / 1023.0f);
 }
 
-void postIsOpen(bool isOpen) {
+bool postIsOpen(bool isOpen) {
 
     Serial.print("Posting isOpen: ");
     Serial.println(isOpen);
 
-    if(client.connect(DOMAIN1, 8888)) {
+    bool success = false;
+    if(client.connect(DOMAIN1, PORT1)) {
         Serial.println("Connected to server");
         Serial.print("POST /garage-door/1?isOpen=");
         Serial.print(isOpen ? 1 : 0);
@@ -72,7 +79,7 @@ void postIsOpen(bool isOpen) {
         Serial.print("Host: ");
         Serial.println(DOMAIN);
         Serial.print("Authorization: Basic ");
-        Serial.println(AUTHORIZATION_HEADER);
+        Serial.println("##############################################");
         Serial.println("Connection: close");
         Serial.println();
 
@@ -85,5 +92,9 @@ void postIsOpen(bool isOpen) {
         client.println(AUTHORIZATION_HEADER);
         client.println("Connection: close");
         client.println();
+
+        success = true;
     }
+
+    return success;
 }
