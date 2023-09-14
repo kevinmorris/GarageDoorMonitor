@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace GarageDoorServices
+namespace GarageDoorModels
 {
     public record GarageDoorStatus
     {
