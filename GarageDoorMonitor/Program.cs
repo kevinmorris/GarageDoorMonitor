@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using GarageDoorMonitor;
+using GarageDoorServices;
 using idunno.Authentication.Basic;
 using Microsoft.AspNetCore.Builder;
 

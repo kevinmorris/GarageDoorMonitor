@@ -1,4 +1,4 @@
-﻿namespace GarageDoorMonitor
+﻿namespace GarageDoorServices
 {
     public interface IGarageDoorService
     {

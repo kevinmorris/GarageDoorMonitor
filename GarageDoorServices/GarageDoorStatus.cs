@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace GarageDoorMonitor
+namespace GarageDoorServices
 {
     public record GarageDoorStatus
     {
@@ -9,5 +9,19 @@ namespace GarageDoorMonitor
 
         [JsonProperty("isOpen")]
         public int IsOpen { get; set; }
+
+        [JsonProperty("_ts")]
+        public long TimestampSeconds { private get; set; }
+
+        public DateTime Timestamp
+        {
+            get
+            {
+                var utcTimestamp = DateTimeOffset.FromUnixTimeSeconds(TimestampSeconds).UtcDateTime;
+                return TimeZoneInfo.ConvertTimeFromUtc(
+                    utcTimestamp,
+                    TimeZoneInfo.FindSystemTimeZoneById("Mountain Standard Time"));
+            }
+        }
     }
 }

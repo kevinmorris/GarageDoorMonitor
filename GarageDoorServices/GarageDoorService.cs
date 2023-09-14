@@ -2,7 +2,7 @@
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Linq;
 
-namespace GarageDoorMonitor
+namespace GarageDoorServices
 {
     public class GarageDoorService : IGarageDoorService
     {
