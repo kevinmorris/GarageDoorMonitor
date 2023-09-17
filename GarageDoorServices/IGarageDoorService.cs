@@ -1,6 +1,4 @@
-﻿using GarageDoorModels;
-
-namespace GarageDoorServices
+﻿namespace GarageDoorServices
 {
     public interface IGarageDoorService
     {

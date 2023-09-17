@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GarageDoorApp", "GarageDoor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GarageDoorServices", "GarageDoorServices\GarageDoorServices.csproj", "{A2BF4A96-B6A8-4E01-B1BC-90E4E1E1F404}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GarageDoorModels", "Models\GarageDoorModels.csproj", "{E02DD4B7-7ECC-4070-A600-E65A394DC19F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,10 +29,6 @@ Global
 		{A2BF4A96-B6A8-4E01-B1BC-90E4E1E1F404}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2BF4A96-B6A8-4E01-B1BC-90E4E1E1F404}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2BF4A96-B6A8-4E01-B1BC-90E4E1E1F404}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E02DD4B7-7ECC-4070-A600-E65A394DC19F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E02DD4B7-7ECC-4070-A600-E65A394DC19F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E02DD4B7-7ECC-4070-A600-E65A394DC19F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E02DD4B7-7ECC-4070-A600-E65A394DC19F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
