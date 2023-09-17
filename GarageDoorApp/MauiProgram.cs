@@ -1,4 +1,7 @@
-﻿namespace GarageDoorApp
+﻿using System.Reflection;
+using Microsoft.Extensions.Configuration;
+
+namespace GarageDoorApp
 {
     public static class MauiProgram
     {

@@ -1,4 +1,7 @@
-﻿namespace GarageDoorApp
+﻿using GarageDoorApp.Api;
+using Microsoft.Extensions.Configuration;
+
+namespace GarageDoorApp
 {
     public partial class App : Application
     {
@@ -15,8 +18,13 @@
 
         private static IServiceProvider ConfigureServices()
         {
-            var services = new ServiceCollection();
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
 
+            var services = new ServiceCollection();
+            services.AddSingleton<IGarageDoorApi, GarageDoorApi>();
+            services.AddSingleton<IConfiguration>(config);
 
             var serviceProvider = services.BuildServiceProvider();
             return serviceProvider;
