@@ -16,6 +16,10 @@
     <Color x:Key="Gray600">#404040</Color>
     <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
 
-    <Color x:Key="Red">#</Color>
+    <Color x:Key="Red">#F03B3B</Color>
+    <SolidColorBrush x:Key="RedBrush" Color="{StaticResource Red}"/>
+
+    <Color x:Key="Green">#4BAA32</Color>
+    <SolidColorBrush x:Key="GreenBrush" Color="{StaticResource Green}"/>
 
 </ResourceDictionary>
