@@ -14,6 +14,22 @@ namespace GarageDoorServices
             _container = cosmosClient.GetContainer(dbName, collectionName);
         }
 
+        public async Task<IEnumerable<GarageDoorStatus>> GetAsync()
+        {
+            var query = new QueryDefinition($"select * from c");
+
+            using var iterator = _container.GetItemQueryIterator<GarageDoorStatus>(query);
+
+            var list = new List<GarageDoorStatus>();
+            while (iterator.HasMoreResults)
+            {
+                var statuses = await iterator.ReadNextAsync();
+                list.AddRange(statuses);
+            }
+
+            return list;
+        }
+
         public async Task<GarageDoorStatus?> GetAsync(string id)
         {
             var query = new QueryDefinition($"select * from c where c.id = @id")

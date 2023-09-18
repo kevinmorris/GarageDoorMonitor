@@ -16,6 +16,14 @@ namespace GarageDoorMonitor.Controllers
         }
 
         [HttpGet]
+        [Route("")]
+        public async Task<IActionResult> Index()
+        {
+            var statuses = await _service.GetAsync();
+            return Ok(statuses);
+        }
+
+        [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> Status(int id)
         {
