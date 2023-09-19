@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GarageDoorApp.Model
 {
-    public class GarageDoorStatus
+    public record GarageDoorStatus
     {
         [JsonProperty("id")]
         public string Id { get; set; }

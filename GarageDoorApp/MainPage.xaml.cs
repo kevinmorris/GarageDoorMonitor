@@ -7,11 +7,13 @@
         {
             InitializeComponent();
             _viewModel = (MainPageViewModel)BindingContext;
+
+            Loaded += OnLoaded;
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private void OnLoaded(object sender, EventArgs e)
         {
-            _viewModel.Action();
+            _viewModel.FetchStatuses();
         }
     }
 }

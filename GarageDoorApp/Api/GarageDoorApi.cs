@@ -26,7 +26,16 @@ namespace GarageDoorApp.Api
             };
 
             _client = new RestClient(clientOptions);
-        } 
+        }
+
+        public async Task<IEnumerable<GarageDoorStatus>> GetAsync()
+        {
+            var request = new RestRequest($"garage-door/");
+            var statuses = await _client.GetAsync<IEnumerable<GarageDoorStatus>>(request);
+
+            return statuses;
+        }
+
         public async Task<GarageDoorStatus> GetAsync(string id)
         {
             var request = new RestRequest($"garage-door/{id}");
