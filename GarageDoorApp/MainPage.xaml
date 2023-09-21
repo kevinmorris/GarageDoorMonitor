@@ -8,26 +8,74 @@
         <garageDoorApp:MainPageViewModel />
     </ContentPage.BindingContext>
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <ListView ItemsSource="{Binding GarageDoorStatuses}" RowHeight="{StaticResource RowHeight}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="140"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                               Text="{Binding Id}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Start"
+                               Margin="{StaticResource LabelMargin}"/>
 
-            <ListView ItemsSource="{Binding GarageDoorStatuses}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Id}" />
-                                <Label Text="{Binding IsOpen}" />
-                                <Label Text="{Binding Timestamp}" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </VerticalStackLayout>
-    </ScrollView>
+                        <Label Grid.Column="1"
+                               FontSize="20"
+                               Text="{Binding Timestamp}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Start"
+                               Margin="{StaticResource LabelMargin}"/>
+
+                        <Ellipse Grid.Column="2" Fill="{StaticResource RedBrush}"
+                                 WidthRequest="{StaticResource CircleRadius}"
+                                 HeightRequest="{StaticResource CircleRadius}"
+                                 HorizontalOptions="End" 
+                                 VerticalOptions="Center"
+                                 Margin="{StaticResource CircleMargin}"
+                                 IsVisible="False">
+                            <Ellipse.Style>
+                                <Style TargetType="Ellipse">
+                                    <Style.Triggers>
+                                        <DataTrigger TargetType="Ellipse"
+                                                     Binding="{Binding IsOpen}"
+                                                     Value="0">
+                                            <Setter Property="IsVisible"
+                                                    Value="True"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Ellipse.Style>
+                        </Ellipse>
+
+                        <Ellipse Grid.Column="2" Fill="{StaticResource GreenBrush}"
+                                 WidthRequest="{StaticResource CircleRadius}"
+                                 HeightRequest="{StaticResource CircleRadius}"
+                                 HorizontalOptions="End"
+                                 VerticalOptions="Center"
+                                 Margin="{StaticResource CircleMargin}"
+                                 IsVisible="False">
+                            <Ellipse.Style>
+                                <Style TargetType="Ellipse">
+                                    <Style.Triggers>
+                                        <DataTrigger TargetType="Ellipse"
+                                                     Binding="{Binding IsOpen}"
+                                                     Value="1">
+                                            <Setter Property="IsVisible"
+                                                    Value="True"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Ellipse.Style>
+                        </Ellipse>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 
 </ContentPage>

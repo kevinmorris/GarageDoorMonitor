@@ -1,4 +1,5 @@
-﻿using GarageDoorApp.Api;
+﻿using System.Reflection;
+using GarageDoorApp.Api;
 using Microsoft.Extensions.Configuration;
 
 namespace GarageDoorApp
@@ -18,8 +19,10 @@ namespace GarageDoorApp
 
         private static IServiceProvider ConfigureServices()
         {
+            var assembly = Assembly.GetExecutingAssembly();
+            using var stream = assembly.GetManifestResourceStream("GarageDoorApp.appsettings.json");
             var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+                .AddJsonStream(stream)
                 .Build();
 
             var services = new ServiceCollection();

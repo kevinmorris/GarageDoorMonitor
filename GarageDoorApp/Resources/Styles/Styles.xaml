@@ -6,21 +6,21 @@
 
     <Style TargetType="Frame">
         <Setter Property="HasShadow" Value="False" />
-        <Setter Property="BorderColor" Value="{AppThemeBinding Default={StaticResource Gray400}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Default={StaticResource GrayLight}}" />
         <Setter Property="CornerRadius" Value="8" />
     </Style>
 
     <Style TargetType="Label">
-        <Setter Property="TextColor" Value="{AppThemeBinding Default={StaticResource Gray400}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Default={StaticResource GrayLight}}" />
         <Setter Property="FontFamily" Value="OpenSansRegular" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="50" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Disabled">
                         <VisualState.Setters>
-                            <Setter Property="TextColor" Value="{AppThemeBinding Default={StaticResource Gray400}}" />
+                            <Setter Property="TextColor" Value="{AppThemeBinding Default={StaticResource GrayLight}}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -29,8 +29,8 @@
     </Style>
 
     <Style TargetType="ListView">
-        <Setter Property="SeparatorColor" Value="{AppThemeBinding Default={StaticResource Gray400}}" />
-        <Setter Property="RefreshControlColor" Value="{AppThemeBinding Default={StaticResource Gray400}}" />
+        <Setter Property="SeparatorColor" Value="{AppThemeBinding Default={StaticResource GrayLight}}" />
+        <Setter Property="RefreshControlColor" Value="{AppThemeBinding Default={StaticResource GrayLight}}" />
     </Style>
 
     <Style TargetType="Page" ApplyToDerivedTypes="True">
@@ -41,14 +41,14 @@
     <Style TargetType="Shell" ApplyToDerivedTypes="True">
         <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Default={StaticResource Black}}" />
         <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Default={StaticResource White}}" />
-        <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Default={StaticResource Gray400}}" />
-        <Setter Property="Shell.DisabledColor" Value="{AppThemeBinding Default={StaticResource Gray600}}" />
-        <Setter Property="Shell.UnselectedColor" Value="{AppThemeBinding Default={StaticResource Gray400}}" />
+        <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Default={StaticResource GrayLight}}" />
+        <Setter Property="Shell.DisabledColor" Value="{AppThemeBinding Default={StaticResource GrayDark}}" />
+        <Setter Property="Shell.UnselectedColor" Value="{AppThemeBinding Default={StaticResource GrayLight}}" />
         <Setter Property="Shell.NavBarHasShadow" Value="False" />
-        <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Default={StaticResource Gray400}}" />
+        <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Default={StaticResource GrayLight}}" />
         <Setter Property="Shell.TabBarForegroundColor" Value="{AppThemeBinding Default={StaticResource White}}" />
         <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Default={StaticResource White}}" />
-        <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Default={StaticResource Gray400}}" />
+        <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Default={StaticResource GrayLight}}" />
     </Style>
 
 </ResourceDictionary>

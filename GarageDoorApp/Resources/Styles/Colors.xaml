@@ -10,11 +10,11 @@
     <Color x:Key="White">White</Color>
     <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
 
-    <Color x:Key="Gray400">#919191</Color>
-    <SolidColorBrush x:Key="Gray400Brush" Color="{StaticResource Gray400}"/>
+    <Color x:Key="GrayLight">#BBBBBB</Color>
+    <SolidColorBrush x:Key="GrayLightBrush" Color="{StaticResource GrayLight}"/>
 
-    <Color x:Key="Gray600">#404040</Color>
-    <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
+    <Color x:Key="GrayDark">#404040</Color>
+    <SolidColorBrush x:Key="GrayDarkBrush" Color="{StaticResource GrayDark}"/>
 
     <Color x:Key="Red">#F03B3B</Color>
     <SolidColorBrush x:Key="RedBrush" Color="{StaticResource Red}"/>
