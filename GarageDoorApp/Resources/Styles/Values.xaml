@@ -8,4 +8,6 @@
 
     <Thickness x:Key="LabelMargin">20</Thickness>
 
+    <Thickness x:Key="ButtonMargin">10</Thickness>
+
 </ResourceDictionary>

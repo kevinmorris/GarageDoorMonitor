@@ -10,6 +10,26 @@
         <Setter Property="CornerRadius" Value="8" />
     </Style>
 
+    <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Default={StaticResource GrayLight}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Default={StaticResource Black}}" />
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Default={StaticResource GrayDark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
     <Style TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Default={StaticResource GrayLight}}" />
         <Setter Property="FontFamily" Value="OpenSansRegular" />
