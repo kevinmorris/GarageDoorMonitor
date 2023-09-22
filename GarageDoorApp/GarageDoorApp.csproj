@@ -12,7 +12,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>GarageDoorApp</ApplicationTitle>
+		<ApplicationTitle>Garage Door</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>pro.kevinmorris.garagedoorapp</ApplicationId>
