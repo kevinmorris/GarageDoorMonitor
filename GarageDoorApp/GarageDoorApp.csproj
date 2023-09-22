@@ -15,7 +15,7 @@
 		<ApplicationTitle>GarageDoorApp</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.garagedoorapp</ApplicationId>
+		<ApplicationId>pro.kevinmorris.garagedoorapp</ApplicationId>
 		<ApplicationIdGuid>3ceaa7e7-7531-4da1-9e2f-32f5840ba441</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -32,7 +32,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.png" />
 
 		<!-- Splash Screen -->
 
@@ -64,6 +64,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Resources\AppIcon\" />
 	  <Folder Include="Resources\Images\" />
 	  <Folder Include="Resources\Splash\" />
 	</ItemGroup>
