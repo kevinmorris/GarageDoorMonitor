@@ -16,3 +16,5 @@ Models/obj/*
 Models/bin/*
 GarageDoorApp/App.config
 GarageDoorApp/appsettings.json
+Tests/obj/*
+Tests/bin/*
