@@ -56,7 +56,7 @@ void loop() {
         voltage = currentVoltage;
     }
 
-    delay(30000);
+    delay(10000);
 }
 
 float getVoltage(pin_size_t pin) {
