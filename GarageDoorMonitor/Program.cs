@@ -30,9 +30,18 @@ builder.Services.AddSingleton<IGarageDoorService>(options =>
 {
     var endpointUri = builder.Configuration["AzureCosmosDB:EndpointUri"];
     var dbName = builder.Configuration["AzureCosmosDB:DatabaseName"];
-    var collectionName = builder.Configuration["AzureCosmosDB:CollectionName"];
+    var collectionName = builder.Configuration["AzureCosmosDB:GarageDoorsName"];
 
     return new GarageDoorService(endpointUri, dbName, collectionName);
+});
+
+builder.Services.AddSingleton<IConfigService>(options =>
+{
+    var endpointUri = builder.Configuration["AzureCosmosDB:EndpointUri"];
+    var dbName = builder.Configuration["AzureCosmosDB:DatabaseName"];
+    var collectionName = builder.Configuration["AzureCosmosDB:ConfigsName"];
+
+    return new ConfigService(endpointUri, dbName, collectionName);
 });
 
 var app = builder.Build();
