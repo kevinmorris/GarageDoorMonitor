@@ -44,6 +44,15 @@ builder.Services.AddSingleton<IConfigService>(options =>
     return new ConfigService(endpointUri, dbName, collectionName);
 });
 
+builder.Services.AddSingleton<IVoltageService>(options =>
+{
+    var endpointUri = builder.Configuration["AzureCosmosDB:EndpointUri"];
+    var dbName = builder.Configuration["AzureCosmosDB:DatabaseName"];
+    var collectionName = builder.Configuration["AzureCosmosDB:VoltagesName"];
+
+    return new VoltageService(endpointUri, dbName, collectionName);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
