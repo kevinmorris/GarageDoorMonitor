@@ -6,7 +6,6 @@ namespace GarageDoorMonitor.Controllers
 {
     [ApiController]
     [Route("garage-door")]
-    [Authorize]
     public class GarageDoorController : Controller
     {
         private readonly IGarageDoorService _service;
@@ -37,6 +36,13 @@ namespace GarageDoorMonitor.Controllers
         {
             await _service.SetAsync(id.ToString(), isOpen);
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("foo")]
+        public IActionResult Foo()
+        {
+            return Content("<html><body><h1>Hello Bravo</h1></body></html>", "text/html");
         }
     }
 }

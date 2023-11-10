@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using GarageDoorMonitor;
+using GarageDoorMonitor.GraphQL;
 using GarageDoorServices;
 using idunno.Authentication.Basic;
 using Microsoft.AspNetCore.Builder;
@@ -29,7 +30,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddSingleton<IGarageDoorService>(options =>
 {
     var endpointUri = builder.Configuration["AzureCosmosDB:EndpointUri"];
-    var dbName = builder.Configuration["AzureCosmosDB:DatabaseName"];
+    var dbName = builder.Configuration["CosmosDBName"];
     var collectionName = builder.Configuration["AzureCosmosDB:GarageDoorsName"];
 
     return new GarageDoorService(endpointUri, dbName, collectionName);
@@ -53,6 +54,8 @@ builder.Services.AddSingleton<IVoltageService>(options =>
     return new VoltageService(endpointUri, dbName, collectionName);
 });
 
+builder.Services.AddGraphQLServer().AddQueryType<Query>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -66,5 +69,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapGraphQL();
 
 app.Run();
