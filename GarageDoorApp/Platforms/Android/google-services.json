@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "403253048528",
+    "project_id": "garagedoormonitor-58c44",
+    "storage_bucket": "garagedoormonitor-58c44.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403253048528:android:86566b0c0929cbd9b79ad5",
+        "android_client_info": {
+          "package_name": "pro.kevinmorris.garagedoorapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6Uz3moZHG6jTHUHlGTtu_334V9dIdWFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

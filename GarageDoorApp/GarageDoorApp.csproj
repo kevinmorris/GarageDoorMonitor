@@ -48,6 +48,7 @@
 
 	<ItemGroup>
 	  <None Remove="appsettings.json" />
+	  <None Remove="Platforms\Android\google-services.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -57,6 +58,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+    <PackageReference Include="Microsoft.Azure.NotificationHubs" Version="4.1.0" />
 	  <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
 	  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -70,8 +72,41 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <GoogleServicesJson Include="Platforms\Android\google-services.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Resources\Styles\Values.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
+    <PackageReference Include="Xamarin.AndroidX.Core" Version="1.12.0.2" />
+    <PackageReference Include="Xamarin.AndroidX.Collection" Version="1.3.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.Preference" Version="1.2.1.2" />
+    <PackageReference Include="Xamarin.Firebase.Analytics">
+      <Version>121.3.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Common">
+      <Version>120.3.3.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Iid">
+      <Version>121.1.0.12</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Installations">
+      <Version>117.1.4.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Messaging">
+      <Version>123.2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.GooglePlayServices.Base">
+	    <Version>118.2.0.4</Version>
+	  </PackageReference>
+	  <PackageReference Include="Xamarin.GooglePlayServices.Basement">
+	    <Version>118.2.0.4</Version>
+	  </PackageReference>
+	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionGarageDoorAppHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 </Project>

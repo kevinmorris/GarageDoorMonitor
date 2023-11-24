@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using GarageDoorApp.Api;
+using GarageDoorMonitor;
 using Microsoft.Extensions.Configuration;
 
 namespace GarageDoorApp
@@ -32,5 +33,31 @@ namespace GarageDoorApp
             var serviceProvider = services.BuildServiceProvider();
             return serviceProvider;
         }
+
+        protected override Window CreateWindow(IActivationState activationState)
+        {
+            var window = base.CreateWindow(activationState);
+            window.Created += (sender, args) =>
+            {
+#if ANDROID
+                var notifierRegistrationId = Preferences.Default.Get<string>(Constants.KeyGarageDoorNotifierRegistrationId, null);
+                if (notifierRegistrationId == null)
+                {
+                    var firebaseRegistrar = new NotificationRegistrar(Microsoft.Maui.ApplicationModel.Platform.AppContext);
+                    firebaseRegistrar.RegisteredEvent += FirebaseRegistrar_Registered;
+                    firebaseRegistrar.Register();
+                }
+#endif
+            };
+
+            return window;
+        }
+
+        private void FirebaseRegistrar_Registered(object sender, NotificationRegisteredEventArgs e)
+        {
+            Preferences.Default.Set(Constants.KeyGarageDoorNotifierRegistrationId, e.RegistrationId);
+        }
+
+
     }
 }
