@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Android.Content;
 using GarageDoorApp.Api;
 using GarageDoorMonitor;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +29,12 @@ namespace GarageDoorApp
 
             var services = new ServiceCollection();
             services.AddSingleton<IGarageDoorApi, GarageDoorApi>();
+
+#if ANDROID
+            services.AddSingleton(Microsoft.Maui.ApplicationModel.Platform.AppContext);
+            services.AddSingleton<NotificationRegistrar>();
+
+#endif
             services.AddSingleton<IConfiguration>(config);
 
             var serviceProvider = services.BuildServiceProvider();
@@ -43,7 +50,7 @@ namespace GarageDoorApp
                 var notifierRegistrationId = Preferences.Default.Get<string>(Constants.KeyGarageDoorNotifierRegistrationId, null);
                 if (notifierRegistrationId == null)
                 {
-                    var firebaseRegistrar = new NotificationRegistrar(Microsoft.Maui.ApplicationModel.Platform.AppContext);
+                    var firebaseRegistrar = Services.GetService<NotificationRegistrar>();
                     firebaseRegistrar.RegisteredEvent += FirebaseRegistrar_Registered;
                     firebaseRegistrar.Register();
                 }

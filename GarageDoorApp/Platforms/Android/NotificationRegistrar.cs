@@ -9,6 +9,7 @@ using Android.Content;
 using Android.Gms.Tasks;
 using Firebase.Messaging;
 using Microsoft.Azure.NotificationHubs;
+using Microsoft.Extensions.Configuration;
 
 namespace GarageDoorApp
 {
@@ -16,8 +17,14 @@ namespace GarageDoorApp
     {
         public event EventHandler<NotificationRegisteredEventArgs> RegisteredEvent;
 
-        public NotificationRegistrar(Context context)
+        public string NotificationHubPath { get; set; }
+        public string NotificationHubConnectionStr { get; set; }
+
+        public NotificationRegistrar(Context context, IConfiguration config)
         {
+            NotificationHubConnectionStr = config.GetValue<string>("NotificationHub:ConnectionString");
+            NotificationHubPath = config.GetValue<string>("NotificationHub:Path");
+
             var channel = new NotificationChannel(
                 "GarageDoorChannel",
                 "Firebase Notifications",
@@ -35,8 +42,8 @@ namespace GarageDoorApp
             tokenTask.AddOnCompleteListener(new OnFirebaseTokenCompleteListener(async token =>
             {
                 var notificationHub = new NotificationHubClient(
-                    "",
-                    "");
+                    NotificationHubConnectionStr,
+                    NotificationHubPath);
 
                 var fcmNativeRegistration = await notificationHub.CreateFcmNativeRegistrationAsync(token);
                 var registrationId = fcmNativeRegistration.FcmRegistrationId;
