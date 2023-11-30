@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace GarageDoorServices
 {
@@ -11,7 +12,8 @@ namespace GarageDoorServices
         public int IsOpen { get; set; }
 
         [JsonProperty("_ts")]
-        public long TimestampSeconds { private get; set; }
+        [JsonPropertyName("_ts")]
+        public long TimestampSeconds { get; set; }
 
         public DateTime Timestamp
         {
