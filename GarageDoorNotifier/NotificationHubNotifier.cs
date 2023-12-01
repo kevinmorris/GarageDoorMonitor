@@ -7,6 +7,10 @@ using TimerInfo = Microsoft.Azure.Functions.Worker.TimerInfo;
 
 namespace GarageDoorNotifier
 {
+    /// <summary>
+    /// Azure function to run each evening and report if the garage door is still open.
+    /// <remarks>Apparently NotificationHub attribute binding is not supported for isolated worker functions</remarks>
+    /// </summary>
     public class NotificationHubNotifier
     {
         private readonly ILogger _logger;
