@@ -13,6 +13,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace GarageDoorApp
 {
+    /// <summary>
+    /// Responsible for registering this device with Firebase Cloud Messaging in order
+    /// to receive alerts that the garage door is open
+    /// </summary>
     public class NotificationRegistrar
     {
         public event EventHandler<NotificationRegisteredEventArgs> RegisteredEvent;
@@ -34,6 +38,9 @@ namespace GarageDoorApp
             notificationManager.CreateNotificationChannel(channel);
         }
 
+        /// <summary>
+        /// Register this device with Azure Notification Hub
+        /// </summary>
         public void Register()
         {
             var sender = this;
