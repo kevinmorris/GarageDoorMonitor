@@ -5,9 +5,9 @@ using Microsoft.Extensions.Logging;
 
 namespace GarageDoorNotifier
 {
-    public class Function1
+    public class GarageDoorNotifier
     {
-        [FunctionName("Function1")]
+        [FunctionName("GarageDoorNotifier")]
         public void Run([TimerTrigger("*/10 * * * * *")]TimerInfo myTimer, ILogger log)
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
