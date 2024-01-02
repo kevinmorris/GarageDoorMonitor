@@ -52,6 +52,10 @@ builder.Services.AddSingleton<IVoltageService>(options =>
 
     return new VoltageService(endpointUri, dbName, collectionName);
 });
+builder.Services.AddApplicationInsightsTelemetry(options =>
+{
+    options.ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"];
+});
 
 var app = builder.Build();
 

@@ -4,10 +4,13 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationInsightsResourceId>/subscriptions/6cfb62ba-7699-4fe3-a7da-5add8c7469fb/resourceGroups/GarageDoorMonitor/providers/microsoft.insights/components/application-insights-cb9904d5</ApplicationInsightsResourceId>
+    <UserSecretsId>6b6c6ac1-c247-4cee-a8cc-f62459e09086</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="idunno.Authentication.Basic" Version="2.3.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>

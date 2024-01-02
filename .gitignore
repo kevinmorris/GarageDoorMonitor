@@ -18,3 +18,6 @@ GarageDoorApp/App.config
 GarageDoorApp/appsettings.json
 Tests/obj/*
 Tests/bin/*
+GarageDoorMonitor/Properties/serviceDependencies.local.json
+GarageDoorMonitor/Properties/serviceDependencies.local.json.user
+GarageDoorMonitor/Properties/ServiceDependencies/local/appInsights1.arm.json
