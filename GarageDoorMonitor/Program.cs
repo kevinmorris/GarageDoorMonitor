@@ -1,8 +1,11 @@
 using System.Security.Claims;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using GarageDoorMonitor;
 using GarageDoorServices;
 using idunno.Authentication.Basic;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Identity.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,12 +14,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var keyVault = new SecretClient(new Uri(builder.Configuration["KeyVaultUrl"]), new DefaultAzureCredential());
+
 builder.Services.AddAuthentication(BasicAuthenticationDefaults.AuthenticationScheme)
     .AddBasic(options =>
     {
-        var authUtil = new AuthUtil(
-            builder.Configuration["BasicAuth:UserName"],
-            builder.Configuration["BasicAuth:Password"]);
+        var basicAuthUserName = keyVault.GetSecret("BasicAuthUserName").Value.Value;
+        var basicAuthPassword = keyVault.GetSecret("BasicAuthPassword").Value.Value;
+        var authUtil = new AuthUtil(basicAuthUserName, basicAuthPassword);
 
         options.Realm = "GarageDoorMonitor";
         options.Events = new BasicAuthenticationEvents
@@ -26,31 +31,29 @@ builder.Services.AddAuthentication(BasicAuthenticationDefaults.AuthenticationSch
     });
 builder.Services.AddAuthorization();
 
+var cosmosDbEndpointUri = keyVault.GetSecret("AzureCosmosDbEndpointUri").Value.Value;
 builder.Services.AddSingleton<IGarageDoorService>(options =>
 {
-    var endpointUri = builder.Configuration["AzureCosmosDB:EndpointUri"];
-    var dbName = builder.Configuration["AzureCosmosDB:DatabaseName"];
-    var collectionName = builder.Configuration["AzureCosmosDB:GarageDoorsName"];
+    var dbName = builder.Configuration["CosmosDb:DatabaseName"];
+    var collectionName = builder.Configuration["CosmosDb:GarageDoorsName"];
 
-    return new GarageDoorService(endpointUri, dbName, collectionName);
+    return new GarageDoorService(cosmosDbEndpointUri, dbName, collectionName);
 });
 
 builder.Services.AddSingleton<IConfigService>(options =>
 {
-    var endpointUri = builder.Configuration["AzureCosmosDB:EndpointUri"];
-    var dbName = builder.Configuration["AzureCosmosDB:DatabaseName"];
-    var collectionName = builder.Configuration["AzureCosmosDB:ConfigsName"];
+    var dbName = builder.Configuration["CosmosDb:DatabaseName"];
+    var collectionName = builder.Configuration["CosmosDb:ConfigsName"];
 
-    return new ConfigService(endpointUri, dbName, collectionName);
+    return new ConfigService(cosmosDbEndpointUri, dbName, collectionName);
 });
 
 builder.Services.AddSingleton<IVoltageService>(options =>
 {
-    var endpointUri = builder.Configuration["AzureCosmosDB:EndpointUri"];
-    var dbName = builder.Configuration["AzureCosmosDB:DatabaseName"];
-    var collectionName = builder.Configuration["AzureCosmosDB:VoltagesName"];
+    var dbName = builder.Configuration["CosmosDb:DatabaseName"];
+    var collectionName = builder.Configuration["CosmosDb:VoltagesName"];
 
-    return new VoltageService(endpointUri, dbName, collectionName);
+    return new VoltageService(cosmosDbEndpointUri, dbName, collectionName);
 });
 builder.Services.AddApplicationInsightsTelemetry(options =>
 {
