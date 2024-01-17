@@ -11,6 +11,7 @@ WiFiClient client;
 float voltage = -1.0f;
 int configCheck = 0;
 int voltageEnabled = 0;
+double voltageThreshold = DEFAULT_VOLTAGE_THRESHOLD;
 
 float getVoltage(pin_size_t pin);
 bool postIsOpen(bool isOpen);
@@ -50,6 +51,7 @@ void loop() {
     if(configCheck == 0) {
         configCheck = CONFIG_CHECK_CYCLE;
         voltageEnabled = atoi(getConfig("voltageEnabled"));
+        voltageThreshold = atof(getConfig("voltageThreshold"));
     } else {
         configCheck -= 1;
     }
@@ -58,19 +60,18 @@ void loop() {
         postVoltage(currentVoltage);
     }
 
-    if(currentVoltage > VOLTAGE_THRESHOLD &&
-       voltage <= VOLTAGE_THRESHOLD &&
+    if(currentVoltage > voltageThreshold &&
+        (voltage <= voltageThreshold || voltage == -1) &&
        postIsOpen(false)) {
 
         voltage = currentVoltage;
 
-    } else if(currentVoltage <= VOLTAGE_THRESHOLD &&
-              voltage > VOLTAGE_THRESHOLD &&
+    } else if(currentVoltage <= voltageThreshold &&
+               (voltage > voltageThreshold || voltage == -1) &&
               postIsOpen(true)) {
 
         voltage = currentVoltage;
     }
-
 
     delay(10000);
 }
