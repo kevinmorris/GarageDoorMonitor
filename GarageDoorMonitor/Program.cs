@@ -14,7 +14,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var keyVault = new SecretClient(new Uri(builder.Configuration["KeyVaultUrl"]), new DefaultAzureCredential());
+var keyVaultUrlStr = builder.Configuration["KeyVaultUrl"];
+var keyVault = new SecretClient(new Uri(keyVaultUrlStr), new DefaultAzureCredential());
 
 builder.Services.AddAuthentication(BasicAuthenticationDefaults.AuthenticationScheme)
     .AddBasic(options =>

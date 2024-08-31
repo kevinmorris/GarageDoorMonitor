@@ -5,13 +5,11 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GarageDoorMonitor", "GarageDoorMonitor\GarageDoorMonitor.csproj", "{B24ABD4B-A49B-4F23-A772-770BA6E82D9A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GarageDoorApp", "GarageDoorApp\GarageDoorApp.csproj", "{C3B43B7E-5BEE-4CD6-960C-D7FD13398FF0}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GarageDoorServices", "GarageDoorServices\GarageDoorServices.csproj", "{A2BF4A96-B6A8-4E01-B1BC-90E4E1E1F404}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{39790C0E-06E8-4C72-8365-111B7BBC1378}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GarageDoorNotifier", "GarageDoorNotifier\GarageDoorNotifier.csproj", "{1AEE2A5F-A163-43E9-AC53-89B9803C521F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GarageDoorNotifier", "GarageDoorNotifier\GarageDoorNotifier.csproj", "{1AEE2A5F-A163-43E9-AC53-89B9803C521F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +21,6 @@ Global
 		{B24ABD4B-A49B-4F23-A772-770BA6E82D9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B24ABD4B-A49B-4F23-A772-770BA6E82D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B24ABD4B-A49B-4F23-A772-770BA6E82D9A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C3B43B7E-5BEE-4CD6-960C-D7FD13398FF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3B43B7E-5BEE-4CD6-960C-D7FD13398FF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3B43B7E-5BEE-4CD6-960C-D7FD13398FF0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{C3B43B7E-5BEE-4CD6-960C-D7FD13398FF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3B43B7E-5BEE-4CD6-960C-D7FD13398FF0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C3B43B7E-5BEE-4CD6-960C-D7FD13398FF0}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{A2BF4A96-B6A8-4E01-B1BC-90E4E1E1F404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A2BF4A96-B6A8-4E01-B1BC-90E4E1E1F404}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2BF4A96-B6A8-4E01-B1BC-90E4E1E1F404}.Release|Any CPU.ActiveCfg = Release|Any CPU
